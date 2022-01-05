@@ -1,0 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.calculator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calcButtons {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+}
+
+.span-grid {
+    grid-column: span 2;
+}
