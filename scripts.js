@@ -63,6 +63,9 @@ function convertKeyboardOperators(operator) {
 }
 
 function appendDecimal() {
+    if (lowerScreen.textContent.includes(".")) {
+        return;
+    }
     lowerScreen.textContent += ".";
 }
 
