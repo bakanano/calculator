@@ -30,20 +30,28 @@ function operate(operator, a, b) {
 }
 
 function displayNumber(number) {
-    if (lowerDisplay.textContent === "0") {
-        lowerDisplay.textContent = "";
+    if (lowerScreen.textContent === "0") {
+        lowerScreen.textContent = "";
     }
-    lowerDisplay.textContent += number;
+    lowerScreen.textContent += number;
+}
+
+function clearScreen() {
+    lowerScreen.textContent = "";
 }
 
 function getKeyboardInput(e) {
     let keyBoardInput = e.key;
     if (keyBoardInput >= 0 && keyBoardInput <= 9) {
-        //console.log(typeof(e.key))
         displayNumber(e.key);
+    }
+    if (keyBoardInput === "Escape") {
+        clearScreen();
     }
 
 }
 
 document.addEventListener("keydown", getKeyboardInput);
-let lowerDisplay = document.querySelector(".lowerDisplay");
+let lowerScreen = document.querySelector(".lowerDisplay");
+let clearButton = document.querySelector(".clear");
+let backspaceButton = document.querySelector(".backspace");
