@@ -43,16 +43,39 @@ function clearScreen() {
 function deleteNumber() {
     lowerScreen.textContent = lowerScreen.textContent.slice(0, -1);
 }
+
+function convertKeyboardOperators(operator) {
+    switch(operator) {
+        case "/":
+            operator = "÷";
+            break;
+        case "*":
+            operator = "×";
+            break;
+        case "-":
+            operator = "-";
+            break;
+        case "+":
+            operator = "+";
+            break;
+    }
+
+}
+
 function getKeyboardInput(e) {
-    let keyBoardInput = e.key;
-    if (keyBoardInput >= 0 && keyBoardInput <= 9) {
+    let keyboardInput = e.key;
+    if (keyboardInput >= 0 && keyboardInput <= 9) {
         displayNumber(e.key);
     }
-    if (keyBoardInput === "Escape") {
+    if (keyboardInput === "Escape") {
         clearScreen();
     }
-    if (keyBoardInput === "Backspace") {
+    if (keyboardInput === "Backspace") {
         deleteNumber();
+    }
+    if (keyboardInput === "/" || keyboardInput === "*" || keyboardInput === "-" ||
+    keyboardInput === "+") {
+        convertKeyboardOperators(keyboardInput);
     }
 
 }
