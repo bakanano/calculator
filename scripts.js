@@ -40,6 +40,9 @@ function clearScreen() {
     lowerScreen.textContent = "";
 }
 
+function deleteNumber() {
+    lowerScreen.textContent = lowerScreen.textContent.slice(0, -1);
+}
 function getKeyboardInput(e) {
     let keyBoardInput = e.key;
     if (keyBoardInput >= 0 && keyBoardInput <= 9) {
@@ -47,6 +50,9 @@ function getKeyboardInput(e) {
     }
     if (keyBoardInput === "Escape") {
         clearScreen();
+    }
+    if (keyBoardInput === "Backspace") {
+        deleteNumber();
     }
 
 }
