@@ -62,6 +62,10 @@ function convertKeyboardOperators(operator) {
 
 }
 
+function appendDecimal() {
+    lowerScreen.textContent += ".";
+}
+
 function getKeyboardInput(e) {
     let keyboardInput = e.key;
     if (keyboardInput >= 0 && keyboardInput <= 9) {
@@ -77,6 +81,9 @@ function getKeyboardInput(e) {
     keyboardInput === "+") {
         convertKeyboardOperators(keyboardInput);
     }
+    if (keyboardInput === ".") {
+        appendDecimal();
+    }
 
 }
 
@@ -84,3 +91,8 @@ document.addEventListener("keydown", getKeyboardInput);
 let lowerScreen = document.querySelector(".lowerDisplay");
 let clearButton = document.querySelector(".clear");
 let backspaceButton = document.querySelector(".backspace");
+let decimalButton = document.querySelector(".decimal");
+
+clearButton.addEventListener("click", clearScreen);
+backspaceButton.addEventListener("click", deleteNumber);
+decimalButton.addEventListener("click", appendDecimal);
