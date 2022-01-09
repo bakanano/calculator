@@ -28,3 +28,22 @@ function operate(operator, a, b) {
             return divide(a, b);
     }
 }
+
+function displayNumber(number) {
+    if (lowerDisplay.textContent === "0") {
+        lowerDisplay.textContent = "";
+    }
+    lowerDisplay.textContent += number;
+}
+
+function getKeyboardInput(e) {
+    let keyBoardInput = e.key;
+    if (keyBoardInput >= 0 && keyBoardInput <= 9) {
+        //console.log(typeof(e.key))
+        displayNumber(e.key);
+    }
+
+}
+
+document.addEventListener("keydown", getKeyboardInput);
+let lowerDisplay = document.querySelector(".lowerDisplay");
