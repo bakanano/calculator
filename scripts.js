@@ -64,7 +64,7 @@ function convertKeyboardOperators(operator) {
 
 function appendDecimal() {
     if (lowerScreen.textContent.includes(".")) {
-        return;
+        decimalButton.disabled = true;
     }
     lowerScreen.textContent += ".";
 }
