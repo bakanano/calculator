@@ -37,7 +37,8 @@ function displayNumber(number) {
 }
 
 function clearScreen() {
-    lowerScreen.textContent = "";
+    upperScreen.textContent = "";
+    lowerScreen.textContent = "0";
 }
 
 function deleteNumber() {
@@ -69,10 +70,10 @@ function appendDecimal() {
     lowerScreen.textContent += ".";
 }
 
-function getKeyboardInput(e) {
-    let keyboardInput = e.key;
+function getKeyboardInput(event) {
+    let keyboardInput = event.key;
     if (keyboardInput >= 0 && keyboardInput <= 9) {
-        displayNumber(e.key);
+        displayNumber(event.key);
     }
     if (keyboardInput === "Escape") {
         clearScreen();
@@ -91,6 +92,7 @@ function getKeyboardInput(e) {
 }
 
 document.addEventListener("keydown", getKeyboardInput);
+let upperScreen = document.querySelector(".upperDisplay");
 let lowerScreen = document.querySelector(".lowerDisplay");
 let clearButton = document.querySelector(".clear");
 let backspaceButton = document.querySelector(".backspace");
