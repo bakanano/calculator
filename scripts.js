@@ -28,10 +28,28 @@ function operate(operator, a, b) {
             return divide(a, b);
     }
 }
-function storeNumbers(e) {
-    console.log(e.target.innerText);
+
+function populateLowerDisplay(e) {
+    lowerDisplay.textContent = e.target.textContent;
 }
 
-var lowerDisplay = document.querySelector("lowerDisplay");
-var numbersButton = Array.from(document.querySelectorAll(`[data-number]`));
-numbersButton.forEach((number) => number.addEventListener("mouseup", storeNumbers));
+function setOperation(e) {
+    firstOperand = lowerDisplay.textContent;
+    operator = e.target.textContent;
+    upperDisplay.textContent = `${firstOperand + operator}`;
+    firstOperand = "";
+    secondOperand = lowerDisplay.textContent;
+    operate(operator, firstOperand, secondOperand);
+}
+
+var firstOperand = "";
+var operator = "";
+var secondOperand = "";
+var lowerDisplay = document.querySelector(".lowerDisplay");
+var upperDisplay = document.querySelector(".upperDisplay");
+
+var numberButtons = Array.from(document.querySelectorAll(`[data-number]`));
+numberButtons.forEach((number) => number.addEventListener("click", populateLowerDisplay));
+
+var operatorButtons = Array.from(document.querySelectorAll(`[data-operator]`));
+operatorButtons.forEach((operator) => operator.addEventListener("click", setOperation));
