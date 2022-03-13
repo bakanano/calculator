@@ -37,9 +37,12 @@ function setOperation(e) {
     firstOperand = lowerDisplay.textContent;
     operator = e.target.textContent;
     upperDisplay.textContent = `${firstOperand + operator}`;
-    firstOperand = "";
+}
+
+function evaluateExpression(e) {
     secondOperand = lowerDisplay.textContent;
-    operate(operator, firstOperand, secondOperand);
+    lowerDisplay.textContent = operate(operator, firstOperand, secondOperand);
+    upperDisplay.textContent = `${firstOperand + operator + secondOperand + "="}`;
 }
 
 var firstOperand = "";
@@ -53,3 +56,6 @@ numberButtons.forEach((number) => number.addEventListener("click", populateLower
 
 var operatorButtons = Array.from(document.querySelectorAll(`[data-operator]`));
 operatorButtons.forEach((operator) => operator.addEventListener("click", setOperation));
+
+var equalsButton = document.querySelector(".evaluate");
+equalsButton.addEventListener("click", evaluateExpression);
