@@ -45,6 +45,12 @@ function evaluateExpression(e) {
     upperDisplay.textContent = `${firstOperand + operator + secondOperand + "="}`;
 }
 
+function clear() {
+    upperDisplay.textContent = "";
+    lowerDisplay.textContent = "0"
+    
+}
+
 var firstOperand = "";
 var operator = "";
 var secondOperand = "";
@@ -59,3 +65,6 @@ operatorButtons.forEach((operator) => operator.addEventListener("click", setOper
 
 var equalsButton = document.querySelector(".evaluate");
 equalsButton.addEventListener("click", evaluateExpression);
+
+var clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", clear);
