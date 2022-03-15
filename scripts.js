@@ -30,7 +30,10 @@ function operate(operator, a, b) {
 }
 
 function populateLowerDisplay(e) {
-    lowerDisplay.textContent = e.target.textContent;
+    if (lowerDisplay.textContent === "0") {
+        lowerDisplay.textContent = "";
+    }
+    lowerDisplay.textContent += e.target.textContent;
 }
 
 function setOperation(e) {
@@ -47,8 +50,16 @@ function evaluateExpression(e) {
 
 function clear() {
     upperDisplay.textContent = "";
-    lowerDisplay.textContent = "0"
+    lowerDisplay.textContent = "0";    
+    operator = "";
+    firstOperand = "";
+    secondOperand = "";
+
     
+}
+
+function backspace() {
+    lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
 }
 
 var firstOperand = "";
@@ -68,3 +79,6 @@ equalsButton.addEventListener("click", evaluateExpression);
 
 var clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clear);
+
+var backspaceButton = document.querySelector(".backspace");
+backspaceButton.addEventListener("click", backspace);
