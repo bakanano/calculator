@@ -29,33 +29,32 @@ function operate(operator, a, b) {
     }
 }
 
-function populateLowerDisplay(e) {
-    if (lowerDisplay.textContent === "0") {
+function populateLowerDisplay(number) {
+    if (lowerDisplay.textContent === "0" || lowerDisplay.textContent != " ") {
         lowerDisplay.textContent = "";
     }
-    lowerDisplay.textContent += e.target.textContent;
+    lowerDisplay.textContent += number;
+    console.log(number);
 }
 
-function setOperation(e) {
+function setOperation(operator) {
     firstOperand = lowerDisplay.textContent;
-    operator = e.target.textContent;
-    upperDisplay.textContent = `${firstOperand + operator}`;
+    currentOperator = operator;
+    upperDisplay.textContent = `${firstOperand + currentOperator}`;
 }
 
 function evaluateExpression(e) {
     secondOperand = lowerDisplay.textContent;
-    lowerDisplay.textContent = operate(operator, firstOperand, secondOperand);
-    upperDisplay.textContent = `${firstOperand + operator + secondOperand + "="}`;
+    lowerDisplay.textContent = operate(currentOperator, firstOperand, secondOperand);
+    upperDisplay.textContent = `${firstOperand + currentOperator + secondOperand + "="}`;
 }
 
 function clear() {
     upperDisplay.textContent = "";
     lowerDisplay.textContent = "0";    
-    operator = "";
+    currentOperator = "";
     firstOperand = "";
     secondOperand = "";
-
-    
 }
 
 function backspace() {
@@ -63,16 +62,16 @@ function backspace() {
 }
 
 var firstOperand = "";
-var operator = "";
+var currentOperator = "";
 var secondOperand = "";
 var lowerDisplay = document.querySelector(".lowerDisplay");
 var upperDisplay = document.querySelector(".upperDisplay");
 
-var numberButtons = Array.from(document.querySelectorAll(`[data-number]`));
-numberButtons.forEach((number) => number.addEventListener("click", populateLowerDisplay));
+var numberButtons = document.querySelectorAll(`[data-number]`);
+numberButtons.forEach((number) => number.addEventListener("click", () => populateLowerDisplay(number.textContent)));
 
 var operatorButtons = Array.from(document.querySelectorAll(`[data-operator]`));
-operatorButtons.forEach((operator) => operator.addEventListener("click", setOperation));
+operatorButtons.forEach((operator) => operator.addEventListener("click", () => setOperation(operator.textContent)));
 
 var equalsButton = document.querySelector(".evaluate");
 equalsButton.addEventListener("click", evaluateExpression);
@@ -82,3 +81,5 @@ clearButton.addEventListener("click", clear);
 
 var backspaceButton = document.querySelector(".backspace");
 backspaceButton.addEventListener("click", backspace);
+
+var decimalButton = document.querySelector(".decimal");
