@@ -62,6 +62,9 @@ function backspace() {
 }
 
 function addDecimal() {
+    if (lowerDisplay.textContent.includes(".")) {
+        return;
+    }
     lowerDisplay.textContent += ".";
 }
 
