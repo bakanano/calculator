@@ -61,6 +61,10 @@ function backspace() {
     lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
 }
 
+function addDecimal() {
+    lowerDisplay.textContent += ".";
+}
+
 var firstOperand = "";
 var currentOperator = "";
 var secondOperand = "";
@@ -83,3 +87,4 @@ var backspaceButton = document.querySelector(".backspace");
 backspaceButton.addEventListener("click", backspace);
 
 var decimalButton = document.querySelector(".decimal");
+decimalButton.addEventListener("click", addDecimal);
