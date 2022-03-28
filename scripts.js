@@ -30,21 +30,24 @@ function operate(operator, a, b) {
 }
 
 function populateLowerDisplay(number) {
-    if (lowerDisplay.textContent === "0" || lowerDisplay.textContent != " ") {
+    if (lowerDisplay.textContent === "0" || lowerDisplay.textContent == "") {
         lowerDisplay.textContent = "";
     }
     lowerDisplay.textContent += number;
-    console.log(number);
 }
 
 function setOperation(operator) {
     firstOperand = lowerDisplay.textContent;
     currentOperator = operator;
     upperDisplay.textContent = `${firstOperand + currentOperator}`;
+    lowerDisplay.textContent = "";
 }
 
-function evaluateExpression(e) {
+function evaluateExpression() {
     secondOperand = lowerDisplay.textContent;
+    if (secondOperand == "0") {
+        lowerDisplay.textContent = "Cannot divide by 0!"
+    }
     lowerDisplay.textContent = operate(currentOperator, firstOperand, secondOperand);
     upperDisplay.textContent = `${firstOperand + currentOperator + secondOperand + "="}`;
 }
@@ -76,6 +79,7 @@ var upperDisplay = document.querySelector(".upperDisplay");
 
 var numberButtons = document.querySelectorAll(`[data-number]`);
 numberButtons.forEach((number) => number.addEventListener("click", () => populateLowerDisplay(number.textContent)));
+
 
 var operatorButtons = Array.from(document.querySelectorAll(`[data-operator]`));
 operatorButtons.forEach((operator) => operator.addEventListener("click", () => setOperation(operator.textContent)));
