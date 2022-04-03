@@ -45,10 +45,10 @@ function setOperation(operator) {
 
 function evaluateExpression() {
     secondOperand = lowerDisplay.textContent;
-    if (secondOperand == "0") {
-        lowerDisplay.textContent = "Cannot divide by 0!"
+    if (currentOperator === "÷" && lowerDisplay.textContent === "0") {
+        lowerDisplay.textContent = "Cannot divide by zero!";
     }
-    lowerDisplay.textContent = operate(currentOperator, firstOperand, secondOperand);
+    lowerDisplay.textContent = Math.round((operate(currentOperator, firstOperand, secondOperand) * 100) / 100);
     upperDisplay.textContent = `${firstOperand + currentOperator + secondOperand + "="}`;
 }
 
