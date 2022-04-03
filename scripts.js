@@ -71,6 +71,21 @@ function addDecimal() {
     lowerDisplay.textContent += ".";
 }
 
+function keydownHandler(e) {
+    if (e.key >= 1 && e.key <= 9) {
+        populateLowerDisplay(e.key);
+    }
+    if (e.key === "Backspace") {
+        backspace();
+    }
+    if (e.key === "Escape") {
+        clear();
+    }
+    if (e.key === ".") {
+        addDecimal();
+    }
+    keyDownOperators(e)
+}
 var firstOperand = "";
 var currentOperator = "";
 var secondOperand = "";
@@ -95,3 +110,5 @@ backspaceButton.addEventListener("click", backspace);
 
 var decimalButton = document.querySelector(".decimal");
 decimalButton.addEventListener("click", addDecimal);
+
+window.addEventListener("keydown", keydownHandler);
